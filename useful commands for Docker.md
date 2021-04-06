@@ -1,55 +1,114 @@
-#### Get the python image:
+### IMAGES
+***
 
-> pull python:3.8-slim
+#### Get the simple_jupyter images:
+> docker pull vreebn/simple_jupyter
 
-#### Get all the local images:
 
-> docker image ls 
+#### find all the local images:
+> docker image ls
+OR     
+> docker images
 
-#### Run python image locally:
 
-> docker run python:3.8-slim
+### RUN CONTAINER FROM IMAGES
+***
 
-#### Run python image locally for ever:
+#### Run container locally:
+> docker run simple_jupyter
 
-> docker run -t -d python:3.8-slim
-
-#### List running containers:
-
-> docker ps
-
-#### Get to the bash of the running container:
-
-> docker exec -ti <containerId> bash
-
-#### Cmd + D to leave the container. Stop the running container:
-
-> docker stop <containerId>
 
 #### Run container with the name:
-
 > docker run -t -d --name="jupyter"
 
-#### Remove exited container:
 
-> docker rm <containerId>
+#### Run container for ever:
+> docker run -t -d --name="jupyter" simple_jupyter
 
-#### Remove container on exit:
 
+#### Run and Remove container on exit:
 > docker run -rm -t -d --name="jupyter"
 
-#### Commit changes in container:
-
-> docker commit <containerId> <newImageId>
-
-#### Run the jupyter in the container:
-
-> jupyter lab --ip='0.0.0.0' --port=8888 --no-browser --allow-root
-
-#### Run container with bound ports:
-
-> docker run --rm -t -d --name=jupyter -p 8888:8888 <imageId>
 
 #### Run container with bind volume:
+> docker run -d -t --name="jupyter" -p 8888:8888 -v C:/Users/Vahidreza/Documents/Docker:/Docker vreebn/simple_jupyter
 
-> docker run --rm -t -d --name=jupyter -p 8888:8888 --mount src="$(pwd)",target=/app,type=bind jupter_v2:latest
+
+#### List running containers:
+> docker ps
+
+
+#### List all containers:
+> docker ps -a
+
+
+#### Get to the bash of the running container:
+> docker exec -ti jupyter bash
+
+
+#### Start the running container:
+> docker start jupyter
+
+
+#### Stop the running container:
+> docker stop jupyter
+
+
+#### Remove exited container:
+> docker rm jupyter
+
+
+#### Commit changes in container:
+> docker commit jupyter vreebn/NEW_IMAGES
+
+
+### CONDA
+***
+
+
+#### create new environment:
+> conda create --name=ENV_NAME
+
+
+#### clone environment from exist environment:
+> conda create clone ENV_NAME --name=ENV_NAME_2
+
+
+#### find all environment:
+> conda env list
+
+
+#### activate environment:
+> conda activate ENV_NAME
+
+
+#### deactivate environment:
+> conda deactivate ENV_NAME
+
+
+#### find all package in environment (in environment):
+> conda list
+
+
+#### install package whit conda:
+> conda install package
+
+
+#### run package :
+> conda env export > environment.yml
+
+
+#### Creating an environment from an environment.yml file:
+> conda env create -f environment.yml
+
+
+
+
+### JUPYTER LAB
+***
+
+#### Run the jupyter lab in the container:
+> jupyter lab --ip='0.0.0.0' --port=8888 --no-browser --allow-root
+
+
+
